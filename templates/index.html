@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спортивный бар</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#games">Игры</a></li>
+                <li><a href="#booking">Бронирование</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="page">
+            <h1>Добро пожаловать в Спортивный бар</h1>
+            <p>Приходите играть в различные спортивные игры и наслаждаться вкусными закусками!</p>
+            <img src="/static/images/home.jpg" alt="Спортивный бар" class="main-image" />
+        </section>
+        <section id="about" class="page">
+            <h1>О нас</h1>
+            <p>Спортивный бар - лучшее место для активного отдыха и вкусной еды.</p>
+            <div class="gallery">
+                <img src="/static/images/about1.jpg" alt="О нас 1">
+                <img src="/static/images/about2.jpg" alt="О нас 2">
+                <img src="/static/images/about3.jpg" alt="О нас 3">
+            </div>
+        </section>
+        <section id="menu" class="page">
+            <h1>Меню</h1>
+            <p>Наше меню предлагает разнообразные закуски на любой вкус.</p>
+            <div class="gallery">
+                <img src="/static/images/menu1.jpg" alt="Меню 1">
+                <img src="/static/images/menu2.jpg" alt="Меню 2">
+                <img src="/static/images/menu3.jpg" alt="Меню 3">
+            </div>
+        </section>
+        <section id="games" class="page">
+            <h1>Игры</h1>
+            <p>У нас вы можете играть в боулинг и другие спортивные игры.</p>
+            <div class="gallery">
+                <img src="/static/images/games1.jpg" alt="Игры 1">
+                <img src="/static/images/games2.jpg" alt="Игры 2">
+                <img src="/static/images/games3.jpg" alt="Игры 3">
+            </div>
+        </section>
+        <!-- Add this new section in your main -->
+        <section id="booking" class="page">
+            <h1>Бронирование</h1>
+            <form id="booking-form" class="booking-form">
+                <div class="form-group">
+                    <label for="activity">Выберите активность:</label>
+                    <select id="activity" name="activity" required>
+                        <option value="billiard">Бильярд</option>
+                        <option value="bowling">Боулинг</option>
+                        <option value="watching">Просмотр игр</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="people">Количество участников:</label>
+                    <input type="number" id="people" name="people" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="timeslot">Выберите доступное время:</label>
+                    <select id="timeslot" name="timeslot" required>
+                        <!-- Example timeslot options (should come from server ideally) -->
+                        <!-- Disabled option indicates it's not available -->
+                        <option value="12:00">12:00 - Доступно</option>
+                        <option value="13:00" disabled>13:00 - Недоступно</option>
+                        <option value="14:00">14:00 - Доступно</option>
+                        <option value="15:00" disabled>15:00 - Недоступно</option>
+                        <!-- Add more timeslots as needed -->
+                    </select>
+                </div>
+                <button type="submit">Бронировать</button>
+            </form>
+        </section>
+        <section id="contact" class="page">
+            <h1>Контакты</h1>
+            <p>Свяжитесь с нами, чтобы узнать больше.</p>
+            <img src="/static/images/contact.jpg" alt="Контакты" class="main-image" />
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Спортивный бар. Все права защищены.</p>
+    </footer>
+    <script src="/static/js/script.js"></script>
+</body>
+
+</html>

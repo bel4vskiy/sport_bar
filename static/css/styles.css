@@ -1,0 +1,170 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+nav ul li a:hover {
+    color: #ff6347;
+}
+
+main {
+    padding-top: 80px; /* Adjust for fixed header height */
+}
+
+.page {
+    padding: 4rem 2rem;
+    background: #fff;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.page.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.main-image {
+    width: 100%;
+    border-radius: 8px;
+    animation: zoomIn 1s ease-in;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.gallery img {
+    width: calc(33.333% - 1rem);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: #333;
+    color: #fff;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.booking-form {
+    display: grid;
+    gap: 1rem;
+    margin: auto;
+    padding: 0 1rem; /* Added padding */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+}
+
+.form-group select, .form-group input {
+    padding: .5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#booking-form button {
+    background: #ff6347;
+    color: #fff;
+    border: none;
+    padding: .8rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-top: 1rem; /* Spacing added above the button */
+    transition: background 0.2s ease-in-out;
+}
+
+#booking-form button:hover {
+    background: #e55330;
+}
+
+/* Make the form responsive */
+@media (min-width: 768px) {
+    .booking-form {
+        max-width: 600px; /* Added max-width for larger screens */
+    }
+}
+
+/* Make it less wide on larger screens */
+@media (min-width: 992px) {
+    .booking-form {
+        max-width: 50%; /* Adjust width ratio as needed */
+    }
+}
+
