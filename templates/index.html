@@ -54,37 +54,35 @@
                 <img src="/static/images/games3.jpg" alt="Игры 3">
             </div>
         </section>
-        <!-- Add this new section in your main -->
+
         <section id="booking" class="page">
-            <h1>Бронирование</h1>
-            <form id="booking-form" class="booking-form">
-                <div class="form-group">
-                    <label for="activity">Выберите активность:</label>
-                    <select id="activity" name="activity" required>
-                        <option value="billiard">Бильярд</option>
-                        <option value="bowling">Боулинг</option>
-                        <option value="watching">Просмотр игр</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="people">Количество участников:</label>
-                    <input type="number" id="people" name="people" min="1" value="1" required>
-                </div>
-                <div class="form-group">
-                    <label for="timeslot">Выберите доступное время:</label>
-                    <select id="timeslot" name="timeslot" required>
-                        <!-- Example timeslot options (should come from server ideally) -->
-                        <!-- Disabled option indicates it's not available -->
-                        <option value="12:00">12:00 - Доступно</option>
-                        <option value="13:00" disabled>13:00 - Недоступно</option>
-                        <option value="14:00">14:00 - Доступно</option>
-                        <option value="15:00" disabled>15:00 - Недоступно</option>
-                        <!-- Add more timeslots as needed -->
-                    </select>
-                </div>
-                <button type="submit">Бронировать</button>
-            </form>
-        </section>
+        <h1>Бронирование</h1>
+        <form id="booking-form" class="booking-form">
+            <div class="form-group">
+                <label for="activity">Выберите активность:</label>
+                <select id="activity" name="activity" required>
+                    <option value="billiard">Бильярд</option>
+                    <option value="bowling">Боулинг</option>
+                    <option value="watching">Просмотр игр</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="people">Количество участников:</label>
+                <input type="number" id="people" name="people" min="1" value="1" required>
+            </div>
+            <div class="form-group">
+                <label for="customer_name">Ваше Имя:</label>
+                <input type="text" id="customer_name" name="customer_name" min="2" required>
+            </div>
+            <div class="form-group">
+                <label for="timeslot">Выберите доступное время:</label>
+                <select id="timeslot" name="timeslot" required>
+                    <option value="">Загрузка...</option>
+                </select>
+            </div>
+            <button type="submit">Бронировать</button>
+        </form>
+    </section>
 
         <section id="contact" class="page">
             <h1>Контакты</h1>

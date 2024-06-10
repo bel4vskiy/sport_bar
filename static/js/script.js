@@ -26,27 +26,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Add this at the end of your existing DOMContentLoaded block
-const bookingForm = document.getElementById('booking-form');
-bookingForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Extract data from form here and send it to your server via AJAX in a real app
-    alert('Ваше бронирование принято!');
-});
-
-
 document.addEventListener('DOMContentLoaded', function() {
+            const activitySelect = document.getElementById('activity');
+            const timeslotSelect = document.getElementById('timeslot');
+
+            // Function to fetch and populate available timeslots
+            function updateTimeslots(activity) {
+                fetch(`/api/availability?activity=${activity}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Clear existing options
+                        timeslotSelect.innerHTML = '';
+                        console.log(data)
+                        // Populate timeslot options
+                        data.forEach(slot => {
+                            const option = document.createElement('option');
+                            option.value = slot.time;
+                            option.textContent = `${slot.time} - ${slot.available ? 'Доступно' : 'Недоступно'}`;
+                            console.log(slot.available)
+                            if (!slot.available) {
+                                option.disabled = true;
+                            }
+                            timeslotSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        alert('Ошибка получения доступности времени: ' + error);
+                    });
+            }
+
+            // Initial load of timeslots for the default activity
+            updateTimeslots(activitySelect.value);
+
+            // Update timeslots when the activity changes
+            activitySelect.addEventListener('change', function() {
+                updateTimeslots(activitySelect.value);
+            });
+
             document.getElementById('booking-form').addEventListener('submit', function(event) {
                 event.preventDefault();
 
                 const activity = document.getElementById('activity').value;
                 const people = document.getElementById('people').value;
                 const timeslot = document.getElementById('timeslot').value;
+                const customer_name = document.getElementById('customer_name').value;
 
                 const bookingData = {
                     activity: activity,
                     people: people,
-                    timeslot: timeslot
+                    timeslot: timeslot,
+                    customer_name: customer_name
                 };
 
                 fetch('/api/booking', {

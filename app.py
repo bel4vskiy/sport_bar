@@ -1,11 +1,8 @@
 # app.py
 from flask import Flask, jsonify, render_template, request
-from models import db, Date, Booking
+from models import *
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///availability.db'
-db.init_app(app)
-
 
 @app.route('/')
 def home():
@@ -13,30 +10,32 @@ def home():
 
 
 
-@app.route('/availability', methods=['GET'])
+@app.route('/api/availability', methods=['GET'])
 def get_availability():
-    dates = Date.query.all()
-    availability = []
+    getActivity = request.args.get('activity')
+    availability_data = {
+        'billiard': [],
+        'bowling': [],
+        'watching': []
+    }
+    dates = cursor.execute("SELECT * FROM Date").fetchall()
+    activities = cursor.execute('SELECT * FROM Activity').fetchall()
+    for time in dates:
+        for activity in activities:
+            cursor.execute(f'SELECT * FROM Booking WHERE activity_name = ? AND booked_date = ?', (activity[1], time[1]))
+            if cursor.fetchall() == []:
+                availability_data[activity[1]].append({"time": time[1], "available": True})
 
-    for date in dates:
-        bookings = Booking.query.filter_by(date=date).all()
-        date_availability = []
-
-        for booking in bookings:
-            date_availability.append({
-                "activity": booking.activity.name,
-                "date": date.date,
-                "available": False
-            })
-
-        availability.extend(date_availability)
-
-    return jsonify({"dates": availability})
+            else:
+                availability_data[activity[1]].append({"time": time[1], "available": False})
+    print(availability_data)
+    return jsonify(availability_data.get(getActivity, []))
 
 @app.route('/api/booking', methods=['POST'])
 def booking():
     data = request.json
     print(data)
+    setBooking(data["activity"], data["timeslot"], data["people"], data["customer_name"])
     return jsonify({"message": "good"}, 201)
 
 
