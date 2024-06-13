@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     customer_name: customer_name
                 };
 
+                console.log(bookingData)
+
                 fetch('/api/booking', {
                     method: 'POST',
                     headers: {
@@ -88,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     alert('Бронирование успешно!');
+                    location.reload();
                 })
                 .catch((error) => {
                     alert('Ошибка бронирования: ' + error);

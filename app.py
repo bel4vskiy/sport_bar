@@ -20,16 +20,19 @@ def get_availability():
     }
     dates = cursor.execute("SELECT * FROM Date").fetchall()
     activities = cursor.execute('SELECT * FROM Activity').fetchall()
-    for time in dates:
-        for activity in activities:
-            cursor.execute(f'SELECT * FROM Booking WHERE activity_name = ? AND booked_date = ?', (activity[1], time[1]))
-            if cursor.fetchall() == []:
-                availability_data[activity[1]].append({"time": time[1], "available": True})
+    for item in activities:
+        if getActivity in item:
+            for time in dates:
+                for activity in activities:
+                    cursor.execute(f'SELECT * FROM Booking WHERE activity_name = ? AND booked_date = ?', (activity[1], time[1]))
+                    if cursor.fetchall() == []:
+                        availability_data[activity[1]].append({"time": time[1], "available": True})
 
-            else:
-                availability_data[activity[1]].append({"time": time[1], "available": False})
-    print(availability_data)
-    return jsonify(availability_data.get(getActivity, []))
+                    else:
+                        availability_data[activity[1]].append({"time": time[1], "available": False})
+            return jsonify(availability_data.get(getActivity, []))
+    else:
+        return jsonify({"message": "This activity is not exists"})
 
 @app.route('/api/booking', methods=['POST'])
 def booking():
